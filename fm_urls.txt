@@ -1,0 +1,13 @@
+PB005_FinancialMarket_New.do 理财产品超市
+	PB005_queryMarketPrdList.do 查询理财产品列表
+PB005_BuyFinancialProd.do 购买理财产品第一步
+	getPersonalSignFlag.do 查询签约情况
+	queryAccountDisAor2.do 申购账号信息查询
+doProductRiskMatch.do 风险评估表 （可选）
+	getHostServerTime
+toBuyFinancialProd.do 购买
+	queryProdProfitRate.do 查询预期收益率
+financialMarketProdBuy.do 理财产品购买确认
+	queryProdProfitRate.do
+	randomSignGen.do 动态密码
+financialMarketProdBuy.do 购买
