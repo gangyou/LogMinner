@@ -2,3 +2,5 @@ raw
 result
 *.pyc
 data
+.project
+.pydevproject
