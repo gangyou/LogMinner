@@ -1,6 +1,6 @@
 # -*- coding=utf8 -*-
 import unittest
-from main.MinningResult import MinningResult
+from src.main.result.MinningResult import MinningResult
 class MinningResultTest(unittest.TestCase):
 
 	def setUp(self):
@@ -27,15 +27,11 @@ class MinningResultTest(unittest.TestCase):
 
 	def test_hit(self):
 		self.result.hit("foo")
-		self.result.hit("foo")
+		times = self.result.hit("foo")
+		bar_times = self.result.hit("bar")
+		self.assertEqual(2, times)
+		self.assertEqual(1, bar_times)
 
-		result = self.result.all()
-		self.assertEqual(1, len(result))
-
-		foo_hit_times = self.result.get("foo")
-		self.assertEqual(2, foo_hit_times)
-
-		self.result.hit("bar")
 
 	def __build_test_data(self):
 		for i in range(10):
@@ -60,8 +56,8 @@ class MinningResultTest(unittest.TestCase):
 	def test_output(self):
 		self.__build_test_data()
 		self.result.output()
-		self.result.output('output.txt')
-		self.result.output('output_sorted.txt', True)
+		self.result.output('../target/output.txt')
+		self.result.output('../target/output_sorted.txt', True)
 
 	def test_merge(self):
 		result1 = MinningResult()

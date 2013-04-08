@@ -1,13 +1,13 @@
 # -*- coding=utf8 -*-
-from MinningResult import MinningResult
+from src.main.result.MinningResult import MinningResult
 class MinnerMachine(object):
 	def __init__(self, line_handler, *filenames):
 		self.line_handler = line_handler
 		if len(filenames) >= 1: 
 			self.filenames = list(filenames)
 
-	def action(self, top=0, single=False):
-		if single:
+	def action(self, top=0, single_report=False):
+		if single_report:
 			for filename in self.filenames:
 				self.__process_single_file(filename, top)
 		else:
@@ -36,4 +36,4 @@ class MinnerMachine(object):
 					if match: result.hit(match)
 		result.output("total.log", top)
 
-
+	
