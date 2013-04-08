@@ -9,9 +9,7 @@ from src.main.scanner.LineScanner import LineScanner
 
 class LineScannerTest(unittest.TestCase):
 
-
-
-    def testName(self):
+    def test_read(self):
         scanner = LineScanner("../resources/test.txt");
         result = []
         for line in scanner:
