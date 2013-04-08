@@ -76,5 +76,4 @@ class MinningResultTest(unittest.TestCase):
 		self.assertEqual(15, foo_hit_times)
 		self.assertEqual(5, bar_hit_times)
 
-if __name__ == '__main__':
-	unittest.main()		
+
