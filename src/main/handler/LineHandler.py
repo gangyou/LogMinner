@@ -1,10 +1,11 @@
 # -*- coding=utf8 -*-
 import re;
 
+'''
+	返回符合符合正则表达式的行
+'''
 class LineHandler(object):
-	"""
-		提取行中感兴趣的部分
-	"""
+	
 	def __init__(self, line_exp):
 		if not line_exp: 
 			self.line_exp = re.compile(r'^(.*)$')
