@@ -1,12 +1,9 @@
-from src.main.LineHandler import LineHandler
-from src.main.MinningResult import MinningResult
-from src.main.MinnerMachine import MinnerMachine
+# -*- encoding=utf8 -*-
+from src.main.handler.RegexpHandler import RegexpHandler
+from src.main.action.HitsStatsAction import HitsStatsAction
 
 
-handler = LineHandler(r"^\[.*SystemOut.*Req\sUrl:/perbank/(.*\.do).*$")
-# filenames = []
-# for i in range(26,36):
-# 	filenames.append("data/08" + str(i) + ".log")
+handler = RegexpHandler(r"^\[.*SystemOut.*Req\sUrl:/perbank/(.*\.do).*$")
 
 filenames = [
 	'raw/20130308/61/SystemOut_13.03.08_08.25.52.log',
@@ -14,5 +11,5 @@ filenames = [
 	'raw/20130308/62/SystemOut_13.03.08_08.25.26.log',
 	'raw/20130308/62/SystemOut_13.03.08_08.40.28.log',
 ]
-machine = MinnerMachine(handler, *filenames)
-machine.action()
+machine = HitsStatsAction(handler, "report.txt", *filenames)
+machine.action(single_report=True, output_format="操作名称: {0}, 点击次数: {1}")

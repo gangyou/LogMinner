@@ -10,12 +10,12 @@ from src.main.scanner.LineScanner import LineScanner
 class LineScannerTest(unittest.TestCase):
 
     def test_read(self):
-        scanner = LineScanner("../resources/test.txt");
+        scanner = LineScanner("../resources/test.txt", "../resources/test2.txt");
         result = []
         for line in scanner:
             result.append(line)
             
-        self.assertEqual(6, len(result))
+        self.assertEqual(12, len(result))
         self.assertEqual("6", result[len(result) - 1])
 
 if __name__ == "__main__":

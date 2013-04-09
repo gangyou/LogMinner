@@ -17,8 +17,9 @@ class RegexpHandler(object):
 	
 	def __init__(self, line_exp=None, flags=0):
 		if not line_exp: 
-			self.line_exp = re.compile(r'^(.*)$', flags)
-		self.line_exp = re.compile(line_exp, flags)
+			self.line_exp = r'^(.*)$'
+		self.line_exp = line_exp
+		self.flags = flags
 		
 	def __get_match_part(self, mo):
 		match_part = ""
@@ -34,6 +35,6 @@ class RegexpHandler(object):
 	'''
 	def match(self, lines):
 		if not lines: return None
-		mo = self.line_exp.match(lines)
+		mo = re.search(self.line_exp, lines, self.flags)
 		match_part = self.__get_match_part(mo)
 		return match_part

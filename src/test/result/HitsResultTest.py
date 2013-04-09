@@ -1,7 +1,7 @@
 # -*- coding=utf8 -*-
 import unittest
 from src.main.result.HitsResult import HitsResult
-class MinningResultTest(unittest.TestCase):
+class HitsResultTest(unittest.TestCase):
 
 	def setUp(self):
 		self.result = HitsResult()
@@ -53,11 +53,26 @@ class MinningResultTest(unittest.TestCase):
 		self.assertEqual("medium", result[1][0])
 		self.assertEqual(5, result[1][1])
 
-	def test_output(self):
+	def test_normal_output(self):
 		self.__build_test_data()
 		self.result.output()
 		self.result.output('../target/output.txt')
-		self.result.output('../target/output_sorted.txt', True)
+		self.result.output('../target/output_sorted.txt', 3)
+		
+		default_file= open("result.txt")
+		lines = default_file.readlines()
+		self.assertEqual("('most', 10)\n", lines[0])
+		self.assertEqual(3, len(lines))
+
+	def test_format_output(self):
+		self.result = HitsResult("key: {0}, value: {1}")
+		self.__build_test_data()
+		self.result.output()
+		
+		output_file = open("result.txt")
+		lines = output_file.readlines()
+		self.assertEqual("key: most, value: 10\n", lines[0])
+		
 
 	def test_merge(self):
 		result1 = HitsResult()

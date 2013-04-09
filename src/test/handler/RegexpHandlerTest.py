@@ -8,6 +8,12 @@ import unittest, re
 import src.main.handler.RegexpHandler as rh
 
 class RegexpHandlerTest(unittest.TestCase):
+    
+    def test_specified_match(self):
+        line = "tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,"
+        handler = rh.RegexpHandler("labore")
+        match = handler.match(line)
+        self.assertEqual("labore", match)
 
 
     def test_match(self):
