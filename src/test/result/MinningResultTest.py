@@ -1,10 +1,10 @@
 # -*- coding=utf8 -*-
 import unittest
-from src.main.result.MinningResult import MinningResult
+from src.main.result.HitsResult import HitsResult
 class MinningResultTest(unittest.TestCase):
 
 	def setUp(self):
-		self.result = MinningResult()
+		self.result = HitsResult()
 
 	def tearDown(self):
 		self.result.close()
@@ -60,8 +60,8 @@ class MinningResultTest(unittest.TestCase):
 		self.result.output('../target/output_sorted.txt', True)
 
 	def test_merge(self):
-		result1 = MinningResult()
-		result2 = MinningResult()
+		result1 = HitsResult()
+		result2 = HitsResult()
 		for i in range(5):
 			result1.hit("foo")
 			result1.hit("bar")

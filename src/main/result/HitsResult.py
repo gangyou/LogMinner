@@ -5,7 +5,7 @@ from UserDict import UserDict
 """
 	挖掘结果集，提供计数
 """
-class MinningResult(UserDict):
+class HitsResult(UserDict):
 	def __init__(self):
 		UserDict.__init__(self)
 
@@ -98,7 +98,7 @@ class MinningResult(UserDict):
 
 	'''
 		合并结果集, 不改变原有集合
-		@param MinningResult: 多个结果集合并 
+		@param HitsResult: 多个结果集合并 
 	'''
 	def merge(self, *results):
 		for r in results:

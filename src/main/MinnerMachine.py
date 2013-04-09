@@ -1,5 +1,5 @@
 # -*- coding=utf8 -*-
-from src.main.result.MinningResult import MinningResult
+from src.main.result.HitsResult import HitsResult
 class MinnerMachine(object):
 	def __init__(self, line_handler, *filenames):
 		self.line_handler = line_handler
@@ -12,14 +12,10 @@ class MinnerMachine(object):
 				self.__process_single_file(filename, top)
 		else:
 			self.__process_batch_file(self.filenames, top)
-		# for filename in self.filenames:
-		# 	print "Processing " + filename
-		# 	result = self.__process_single_file(filename)
-		# 	result.output('result_' + filename, top)
 
 	def __process_single_file(self, filename, top):
 		print "Processing " + filename
-		result = MinningResult()
+		result = HitsResult()
 		with open(filename) as f:
 			for line in f:
 				match = self.line_handler.match(line)
@@ -27,7 +23,7 @@ class MinnerMachine(object):
 		result.output("result_" + filename, top)
 
 	def __process_batch_file(self, filenames, top):
-		result = MinningResult()
+		result = HitsResult()
 		for filename in filenames:
 			print "Processing " + filename
 			with open(filename) as f:
