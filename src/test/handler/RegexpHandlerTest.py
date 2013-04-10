@@ -32,6 +32,24 @@ class RegexpHandlerTest(unittest.TestCase):
         match= handler.match(lines)
         self.assert_("World\nHello", match)
 
+    def test_is_first_line_match(self):
+        lines_array = ["Hello World\n", "Hello Python\n", "Hello Eric"]
+        lines = "".join(lines_array)
+        
+        handler = rh.RegexpHandler("^Hello", rh.DOTALL | rh.MULTILINE)
+        
+        self.assertFalse(handler.is_first_line_match())
+        
+        handler.match(lines)
+        self.assertTrue(handler.is_first_line_match())
+        
+        handler = rh.RegexpHandler(r"World.*?Hello", rh.DOTALL | rh.MULTILINE)
+        handler.match(lines)
+        self.assertTrue(handler.is_first_line_match())
+        
+        handler = rh.RegexpHandler(r"Python.*?Hello", rh.DOTALL | rh.MULTILINE)
+        handler.match(lines)
+        self.assertFalse(handler.is_first_line_match())
 
 if __name__ == "__main__":
     unittest.main()

@@ -5,3 +5,4 @@ raw
 data
 .project
 .pydevproject
+src/test/resources/customer_path_action_test.txt

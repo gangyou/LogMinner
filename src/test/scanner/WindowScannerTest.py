@@ -21,9 +21,9 @@ class Test(unittest.TestCase):
 
     def test_read(self):
         size = 10
-        filepath = "../resources/window_scanner_test.txt"
+        filepath = ["../resources/window_scanner_test.txt", "../resources/window_scanner_test.txt"]
         # 创建10行的窗口大小
-        scanner = WindowScanner(filepath, size)
+        scanner = WindowScanner(size, *filepath)
         
         last_win = None
         for win in scanner:
@@ -33,7 +33,7 @@ class Test(unittest.TestCase):
         last_win_lines = last_win.split(os.linesep)
         
         lines = []
-        with open(filepath) as f:
+        with open(filepath[0]) as f:
             for line in f:
                 lines.append(line)
         last_ten_lines = lines[-size:]

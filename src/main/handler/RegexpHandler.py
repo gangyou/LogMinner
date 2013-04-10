@@ -4,6 +4,7 @@ import re;
 '''
 	返回符合符合正则表达式的行
 '''
+import os
 
 # flags
 IGNORECASE = re.IGNORECASE
@@ -35,6 +36,21 @@ class RegexpHandler(object):
 	'''
 	def match(self, lines):
 		if not lines: return None
-		mo = re.search(self.line_exp, lines, self.flags)
-		match_part = self.__get_match_part(mo)
+		#记录当前访问行
+		self.lines = lines
+		self.mo = re.search(self.line_exp, lines, self.flags)
+		match_part = self.__get_match_part(self.mo)
 		return match_part
+	
+	def is_first_line_match(self):
+		if not hasattr(self, 'mo'): return False
+		if not self.mo: return False
+		first_line_end = self.lines.find(os.linesep)
+		try:
+			start = self.mo.start(1)
+			if start < first_line_end: return True
+			else: return False
+		except IndexError:
+			start = self.mo.start(0)
+			if start < first_line_end: return True
+			else: return False
